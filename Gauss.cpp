@@ -23,11 +23,11 @@ void Gauss::Parametros(){
 	
 	i = 0;
 	
-	cout<<"\n Introduzca los elementos de la matriz: ";
+	cout<<"\n Introduzca los elementos de la matriz\n ";
 	for(int i = 0; i<filas; i++){
 		for(j=0; j<columnas; j++){
 			cout<<"Digite un numero ["<<i<<"]["<<j<<"]: ";
-			cin>>*(*(matriz + 1 )+ j);
+			cin>>*(*(matriz + i )+ j);
 		}
 	}
 	
@@ -35,15 +35,20 @@ void Gauss::Parametros(){
 
 void Gauss::Matriz(){
 	int i,j;
-	
+	cout<<"\n\n La Matriz es: "<<endl;
 	for(i = 0; i < filas; i++){
 		for(j = 0; j < columnas; j++){
-				
+			cout<<*(*(matriz + i )+ j)<<" ";	
 		}
+		cout<<"\n";
 	}
 }
 
 int main(void){
+	Gauss A;
+	
+	A.Parametros();
+	A.Matriz();
 	
 	return 0;
 }
