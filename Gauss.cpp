@@ -4,7 +4,7 @@
 using namespace std;
 
 class Gauss{
-	double resultado, **matriz, **matriz_resultante;
+	double x, y ,z , **matriz, **matriz_resultante;
 	int filas, columnas;
 	public:
 		void Parametros();
@@ -48,6 +48,7 @@ void Gauss::Parametros(){
 
 void Gauss::Matriz(){
 	int i,j;
+	double aux;
 	cout<<"\n\n La Matriz es: "<<endl;
 	for(i = 0; i < filas; i++){
 		for(j = 0; j < columnas; j++){
@@ -58,10 +59,13 @@ void Gauss::Matriz(){
 	
 	for(int i = 1; i<filas; i++){
 		for(j=0; j<columnas; j++){
-			if(( (matriz[0][0] * matriz[i][0]) * matriz[i][j] ) == ( (matriz[0][0] * matriz[i][0]) * matriz[0][j]))
-				matriz_resultante[i][j] = ( (matriz[0][0] * matriz[i][0]) * matriz[i][j] ) - ( (matriz[0][0] * matriz[i][0]) * matriz[0][j]);
-			else
-				matriz_resultante[i][j] = ( (matriz[0][0] * matriz[i][0]) * matriz[i][j] ) + ( (matriz[0][0] * matriz[i][0]) * matriz[0][j]);
+			matriz_resultante[i][j] =  (matriz[0][0] * matriz[i][j] ) -  (matriz[i][0] * matriz[0][j]);
+		}
+	}
+	
+	for(int i = 2; i<filas; i++){
+		for(j=1; j<columnas; j++){
+			matriz_resultante[i][j] =  (matriz[1][1] * matriz[i][j] ) -  (matriz[i][1] * matriz[1][j]);
 		}
 	}
 
@@ -73,6 +77,11 @@ void Gauss::Matriz(){
 		cout<<"\n";
 	}
 	
+	z = matriz_resultante[2][3]/matriz_resultante[2][2];
+	y = (matriz_resultante[1][3] - z*matriz_resultante[1][2])/matriz_resultante[1][1];
+	x = (matriz_resultante[0][3] - z*matriz_resultante[0][2] - y*matriz_resultante[0][1])/matriz_resultante[0][0];
+	
+	cout<<"El valor de x es: "<<x<<"\nEl valor de y es: "<<y<<"\nEl valor de z es: "<<z;
 }
 
 int main(void){
