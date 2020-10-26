@@ -89,7 +89,6 @@ int main(void){
 	
 	A.Parametros();
 	A.Matriz();
-	
 	return 0;
 }
 
