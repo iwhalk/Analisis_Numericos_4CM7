@@ -58,9 +58,9 @@ void Gauss::Matriz(){
 	}
 	
 	for(int k = 0; k < 2; k++){
-		for(int i = 1+k; i < filas; i++){
-			for(j=0+k; j < columnas; j++){
-				matriz[i][j] =  (matriz_resultante[k][k] * matriz[i][j]) - (matriz_resultante[i][0+k] * matriz[k][j]);// -  (matriz[i][k] * matriz[k][j]);
+		for(int i = 1+k; i<filas; i++){
+			for(j=0+k; j<columnas; j++){
+				matriz_resultante[i][j] =  (matriz[k][k] * matriz[i][j] ) -  (matriz[i][k] * matriz[k][j]);
 			}
 		}
 	}
@@ -68,7 +68,23 @@ void Gauss::Matriz(){
 	cout<<"\n\n La Matriz nueva es: "<<endl;
 	for(i = 0; i < filas; i++){
 		for(j = 0; j < columnas; j++){
-			cout<<matriz[i][j]<<" ";	
+			cout<<matriz_resultante[i][j]<<" ";	
+		}
+		cout<<"\n";
+	}
+		
+	for(int k = 0; k < 2; k++){
+		for(int i = (filas-2)-k; i >= 0; i--){
+			for(j = (columnas-2)-k; j >= 0; j--){
+				matriz_resultante[i][j] =  (matriz[2-k][2-k] * matriz[i][j] ) -  (matriz[i][2-k] * matriz[2-k][j]);
+			}
+		}
+	}
+	
+	cout<<"\n\n La Matriz nueva es: "<<endl;
+	for(i = 0; i < filas; i++){
+		for(j = 0; j < columnas; j++){
+			cout<<matriz_resultante[i][j]<<" ";	
 		}
 		cout<<"\n";
 	}
@@ -87,4 +103,3 @@ int main(void){
 	A.Matriz();
 	return 0;
 }
-
